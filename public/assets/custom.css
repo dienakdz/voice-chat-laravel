@@ -1,0 +1,29 @@
+body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+}
+
+#chatBox {
+    border: 1px solid #ccc;
+    padding: 10px;
+    height: 300px;
+    overflow-y: auto;
+}
+
+.msg {
+    margin: 5px 0;
+    padding: 8px 12px;
+    border-radius: 10px;
+    display: inline-block;
+    max-width: 70%;
+}
+
+.user {
+    background: #d1e7ff;
+    align-self: flex-end;
+}
+
+.ai {
+    background: #e6ffe6;
+    align-self: flex-start;
+}
