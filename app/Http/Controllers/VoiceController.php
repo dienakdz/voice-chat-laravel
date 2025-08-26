@@ -17,7 +17,8 @@ class VoiceController extends Controller
         $userText = $request->input('text');
 
         $response = Http::withHeaders([
-            'Authorization' => 'Bearer ' . env('GEMINI_API_KEY'),
+            'Authorization' => 'Bearer ' . env('GEMINI_API_KEY'), //AIzaSyBnFFt6afUgYv2j_1qj0tghF43CK0ZbYtw
+
         ])->post('https://generativelanguage.googleapis.com/v1beta/openai/chat/completions', [
             'model' => 'gemini-2.5-flash',
             'messages' => [
