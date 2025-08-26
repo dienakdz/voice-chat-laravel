@@ -16,10 +16,11 @@ class VoiceController extends Controller
     {
         $userText = $request->input('text');
         /**
-         * AIzaSy
-         * BnFFt6afUgYv2j_
-         * 1qj0tghF43CK
-         * 0ZbYtw
+         * AIzaSy ddaua co gi dau ma chec
+         * 
+         * BnFF ban hieu k t6afUgYv2j_
+         * 1qj0tg o day k co gi ca hF43CK
+         * 0Zb ok Ytw
          */
 
         $response = Http::withHeaders([
