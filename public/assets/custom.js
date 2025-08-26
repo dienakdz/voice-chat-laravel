@@ -25,7 +25,8 @@ $(document).ready(function () {
             data: JSON.stringify({ text: text }),
             success: function (res) {
                 thinking.remove(); // xóa "Đang nghĩ..."
-                $("#chatBox").append(`<div class="msg ai"><b>AI:</b> ${res.answer}</div><br>`);
+let formatted = res.answer.replace(/\n/g, "<br>");
+$("#chatBox").append(`<div class="msg ai"><b>AI:</b> ${formatted}</div>`);
                 $("#chatBox").scrollTop($("#chatBox")[0].scrollHeight);
             },
             error: function () {
