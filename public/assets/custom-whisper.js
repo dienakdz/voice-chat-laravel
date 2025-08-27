@@ -27,9 +27,9 @@ $(document).ready(function () {
         }
     }
 
-    $('#send-voice, #voice').on('click',async function(e) {
+    $('#send-voice').on('click',async function(e) {
         e.preventDefault();
-        var $icon = $(this);
+        var $icon = $("#send-voice #voice");
 
         if ($icon.hasClass('recording')) {
             // Dừng ghi âm
@@ -59,7 +59,6 @@ $(document).ready(function () {
                 formData.append('audio', audioBlob, 'audio.wav');
                 formData.append('context', JSON.stringify(chatContext.slice(-16)));
                 formData.append('_token', token);
-
 
                 const res = await fetch('/voice-whisper/voice-chat', { method: 'POST', body: formData });
                 const data = await res.json();

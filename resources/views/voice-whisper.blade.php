@@ -41,7 +41,7 @@
                         <div class="conversation">
                             <div class="conversation-container"></div>
                             <form class="conversation-compose" enctype="multipart/form-data">
-                                <input style="margin-left: 10px; padding-left: 15px; border-radius: 8px" class="input-msg" type="audio" name="input" placeholder="Type a message" autocomplete="off"
+                                <input style="margin-left: 10px; padding-left: 15px; border-radius: 8px" class="input-msg" type="audio" name="input" placeholder="Talk with AI ..." readonly
                                     autofocus></input>
 
                                 <button class="send" id="send-voice">

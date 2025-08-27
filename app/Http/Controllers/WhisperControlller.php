@@ -17,25 +17,15 @@ class WhisperControlller extends Controller
         $request->validate([
             'audio' => 'required|file|mimes:wav,mp3,webm',
         ]);
-        if (!$request->hasFile('audio')) {
-            return response()->json(['error' => 'File không được gửi'], 400);
-        }
 
         $file = $request->file('audio');
 
-        // Lưu vào storage/app/audio/ với tên temp_audio.wav
-        $filePath = $file->storeAs('audio', 'temp_audio.wav');
+        // move file to storage/app/audio/temp_audio.wav
+        $destinationPath = storage_path('app/audio');
+        $fileName = 'temp_audio.wav';
+        $file->move($destinationPath, $fileName);
 
-        if (!$filePath) {
-            return response()->json(['error' => 'File không được lưu'], 500);
-        }
-
-        $fullPath = storage_path('app/' . $filePath);
-        $dir = storage_path('app/audio');
-        dd(is_writable($dir), $dir);
-
-        dd(file_exists($fullPath), $fullPath);
-
+        $fullPath = $destinationPath . DIRECTORY_SEPARATOR . $fileName;
 
         // Gọi Python Whisper
         $pythonPath = 'D:\\pyCharmProject\\whisper-open-ai\\.venv\\Scripts\\python.exe';
@@ -48,10 +38,9 @@ class WhisperControlller extends Controller
         $return_var = null;
         exec($cmd, $output, $return_var);
 
-        dd($output, $return_var);
-
         $userText = implode("\n", $output);
 
+        // $userText = "Hello, Can you help me?";
 
         if (!$userText) {
             return response()->json([
@@ -78,9 +67,9 @@ class WhisperControlller extends Controller
         $response = Http::withHeaders([
             'Authorization' => 'Bearer ' . env('GEMINI_API_KEY'),
         ])->post('https://generativelanguage.googleapis.com/v1beta/openai/chat/completions', [
-            'model' => 'gemini-2.5-flash',
-            'messages' => $messages,
-        ]);
+                    'model' => 'gemini-2.5-flash',
+                    'messages' => $messages,
+                ]);
 
         $json = $response->json();
 
