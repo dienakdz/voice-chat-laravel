@@ -39,6 +39,7 @@ class WhisperControlller extends Controller
         exec($cmd, $output, $return_var);
 
         $userText = implode("\n", $output);
+        // dd($userText);
 
         // $userText = "Hello, Can you help me?";
 

@@ -9,7 +9,8 @@ audio_path = sys.argv[1]
 model = whisper.load_model("small")
 
 # Transcribe
-result = model.transcribe(audio_path, language="vi")
+# result = model.transcribe(audio_path, language="en")
+result = model.transcribe(audio_path)
 
 # In ra text
 print(result["text"])

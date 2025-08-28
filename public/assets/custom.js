@@ -116,7 +116,7 @@ $(document).ready(function () {
         };
 
         recognition.onerror = function (event) {
-            console.log('Speech recognition error', event.error);
+            console.log('Speech recognition error', event);
         };
 
         recognition.onend = function () {
