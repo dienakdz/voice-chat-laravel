@@ -27,7 +27,7 @@ $(document).ready(function () {
         }
     }
 
-    $('#send-voice').on('click',async function(e) {
+    $('#send-voice').on('click', async function (e) {
         e.preventDefault();
         var $icon = $("#send-voice #voice");
 
@@ -60,15 +60,27 @@ $(document).ready(function () {
                 formData.append('context', JSON.stringify(chatContext.slice(-16)));
                 formData.append('_token', token);
 
-                const res = await fetch('/voice-whisper/voice-chat', { method: 'POST', body: formData });
-                const data = await res.json();
-
-                // Hiển thị AI text + TTS
-                var $message_ai = buildMessage(data.ai_text, 'ai');
-                $conversation.append($message_ai);
-                chatContext.push({ role: 'assistant', content: data.ai_text });
-                speakText(data.ai_text);
+                let thinking = buildMessage("Thinking...", "ai");
+                $conversation.append(thinking);
                 $conversation.scrollTop($conversation[0].scrollHeight);
+
+                try {
+                    const res = await fetch('/voice-whisper/voice-chat', { method: 'POST', body: formData });
+                    const data = await res.json();
+
+                    thinking.remove();
+
+                    let $message_ai = buildMessage(data.ai_text, 'ai');
+                    $conversation.append($message_ai);
+                    chatContext.push({ role: 'assistant', content: data.ai_text });
+                    speakText(data.ai_text);
+                    $conversation.scrollTop($conversation[0].scrollHeight);
+
+                } catch (err) {
+                    thinking.remove();
+                    console.error(err);
+                }
+
             };
 
             mediaRecorder.start();
