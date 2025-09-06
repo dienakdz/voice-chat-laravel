@@ -13,7 +13,7 @@ Chatbot hỗ trợ cả **Text Chat** và **Voice Chat**, giúp bạn có trải
 ---
 
 ## ▶️ Demo Video
-👉 Xem video demo tại đây: [YouTube Demo]([https://youtube.com/your-video-link](https://www.youtube.com/watch?v=qMWdXvstliQ))
+👉 Xem video demo tại đây: [YouTube Demo](https://www.youtube.com/watch?v=qMWdXvstliQ)
 
 ---
 
